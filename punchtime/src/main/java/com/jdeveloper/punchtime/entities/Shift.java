@@ -1,79 +1,64 @@
 package com.jdeveloper.punchtime.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String shiftType;
-    private String shiftStart;
-    private String shiftEnd;
-    private Double hours;
+    private String date;
+    private String punchIn;
+    private String punchOut;
+    private Long hours;
 
-    @ManyToOne
-    @JoinColumn(name="employee_id", referencedColumnName = "id")
-    public List<Employee> employee;
+    public Shift() {}
 
+	public Shift(String date, String punchIn, String punchOut, Long hours) {
+		super();
+		this.date = date;
+		this.punchIn = punchIn;
+		this.punchOut = punchOut;
+		this.hours = hours;
+	}
 
-    public Shift() {
+	public Long getId() {
+		return id;
+	}
 
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Shift(String shiftType, String shiftStart, String shiftEnd, Double hours) {
-        this.shiftType = shiftType;
-        this.shiftStart = shiftStart;
-        this.shiftEnd = shiftEnd;
-        this.hours = hours;
-    }
+	public String getDate() {
+		return date;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setDate(String date) {
+		this.date = date;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public String getPunchIn() {
+		return punchIn;
+	}
 
-    public String getShiftType() {
-        return shiftType;
-    }
+	public void setPunchIn(String punchIn) {
+		this.punchIn = punchIn;
+	}
 
-    public void setShiftType(String shiftType) {
-        this.shiftType = shiftType;
-    }
+	public String getPunchOut() {
+		return punchOut;
+	}
 
-    public String getShiftStart() {
-        return shiftStart;
-    }
+	public void setPunchOut(String punchOut) {
+		this.punchOut = punchOut;
+	}
 
-    public void setShiftStart(String shiftStart) {
-        this.shiftStart = shiftStart;
-    }
+	public Long getHours() {
+		return hours;
+	}
 
-    public String getShiftEnd() {
-        return shiftEnd;
-    }
-
-    public void setShiftEnd(String shiftEnd) {
-        this.shiftEnd = shiftEnd;
-    }
-
-//    public Double calculateHours(String shiftStart, String shiftEnd) {
-//        return Double.parseDouble(shiftEnd) - Double.parseDouble(shiftStart);
-//    }
-
-//    public HashMap<Employee, Shift> assignShifts() {
-//
-//    }
-
-    public Double getHours() {
-        return hours;
-    }
-
-    public void setHours(Double hours) {
-        this.hours = hours;
-    }
+	public void setHours(Long hours) {
+		this.hours = hours;
+	}
 }
