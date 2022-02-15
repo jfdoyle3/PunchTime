@@ -119,18 +119,14 @@ public class DateTimeUtils {
 //		System.out.println(ld);
 	}
 	
-	public static Double calculateWorkingHours(String time1, String time2) throws ParseException {
-//		String time1 = "20:31:00";
-//		String time2 = "10:31:00";
-		//String time1 = "07:01:03";
-		//String time2 = "15:01:03";
+	public static Double calculateDailyHours(String time1, String time2) throws ParseException {
 
 		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 		Date date1 = format.parse(time1);
 		Date date2 = format.parse(time2);
 		Double difference = (double) (date2.getTime() - date1.getTime());
+		//  3,600,000 millisecond = 1 minute / 1 ms = 1.7e-05 mins / 1 mins = 60,000.0 ms
 		Double hours=Math.floor(((difference/3600000)*100)/100);
-	//	System.out.println(Math.floor(hours * 100) / 100);
 		return hours;
 	}
 	

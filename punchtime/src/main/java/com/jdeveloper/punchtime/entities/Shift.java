@@ -14,6 +14,7 @@ public class Shift {
     private String date;
     private String punchIn;
     private String punchOut;
+	@SuppressWarnings("unused")
 	private Double hours;
 
     public Shift() {}
@@ -57,17 +58,16 @@ public class Shift {
 	}
 
 	public Double getHours() {
-		return hours;
-	}
-
-	public void setHours() {
 		Double hours=0d;
 		try {
-			hours=DateTimeUtils.calculateWorkingHours(this.punchIn,this.punchOut);
+			hours=DateTimeUtils.calculateDailyHours(this.punchIn,this.punchOut);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		 
+		return hours;
+	}
+
+	public void setHours(Double hours) {
 		this.hours=hours;
 	}
 }
