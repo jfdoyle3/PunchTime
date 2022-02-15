@@ -1,22 +1,24 @@
 package com.jdeveloper.punchtime.entities;
 
-import java.util.Date;
+import java.text.ParseException;
 
 import javax.persistence.*;
+
+import com.jdeveloper.punchtime.utils.DateTimeUtils;
 
 @Entity
 public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date date;
+    private String date;
     private String punchIn;
     private String punchOut;
-    private Long hours;
+	private Double hours;
 
     public Shift() {}
 
-	public Shift(Date date, String punchIn, String punchOut) {
+	public Shift(String date, String punchIn, String punchOut) {
 		this.date = date;
 		this.punchIn = punchIn;
 		this.punchOut = punchOut;
@@ -30,11 +32,11 @@ public class Shift {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -54,11 +56,18 @@ public class Shift {
 		this.punchOut = punchOut;
 	}
 
-	public Long getHours() {
+	public Double getHours() {
 		return hours;
 	}
 
-	public void setHours(Long hours) {
-		this.hours = hours;
+	public void setHours() {
+		Double hours=0d;
+		try {
+			hours=DateTimeUtils.calculateWorkingHours(this.punchIn,this.punchOut);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		 
+		this.hours=hours;
 	}
 }

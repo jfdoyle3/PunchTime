@@ -1,5 +1,9 @@
 package com.jdeveloper.punchtime.utils;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -11,16 +15,66 @@ import java.util.Scanner;
 
 public class DateTimeUtils {
 
+	
+	// TODO delete this when finished.
 	public static void main(String[] args) throws ParseException {
 
 	//splitDateTime();
 //		inputDate();
 //		System.out.println(inputTime("20:31:00","10:31:00"));
 		
+	//	sqlDateTime();
 		
-
-
+		java.util.Date date=new java.util.Date();
+		System.out.println(date.getTime());
+	
+	}
+	
+	public static void sqlDateTime() {
 		
+		
+		try{
+
+			// Connect to Database
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/datetime","root","root");
+			
+			// Instantiate Java's Date
+			java.util.Date date=new java.util.Date();
+			
+			// Instantiate SQL Date to Java's Date
+			java.sql.Date sqlDate=new java.sql.Date(date.getTime());
+			
+			// Instantiate SQL TimeStamp to Java's Date to get Time
+			java.sql.Timestamp sqlTime=new java.sql.Timestamp(date.getTime());
+			
+		//	java.sql.Time sqlTime=new java.sql.Time(date.getTime());
+			
+			// Prepare a SQL statement for writing to Database
+			PreparedStatement ps=con.prepareStatement("insert into record (date,time) values(?,?)");
+			
+			// Set Date
+			ps.setDate(1,sqlDate);
+			
+			// Set Time
+			ps.setTimestamp(2,sqlTime);
+			
+			
+		//	ps.setTime(2,sqlTime);
+			
+			// Execute SQL - Write to Database
+			ps.executeUpdate();
+			
+			// Close Statement
+			ps.close();
+			
+			// Close Connection
+			con.close();
+			
+			
+			System.out.println("Written to database");
+			}catch(Exception e){
+			e.printStackTrace();
+			}	
 	}
 	// UNIX Epoch Time
 	public static void splitDateTime() {
@@ -65,7 +119,7 @@ public class DateTimeUtils {
 //		System.out.println(ld);
 	}
 	
-	public static Double inputTime(String time1, String time2) throws ParseException {
+	public static Double calculateWorkingHours(String time1, String time2) throws ParseException {
 //		String time1 = "20:31:00";
 //		String time2 = "10:31:00";
 		//String time1 = "07:01:03";

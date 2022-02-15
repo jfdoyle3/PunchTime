@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import com.jdeveloper.punchtime.entities.Shift;
 import com.jdeveloper.punchtime.repositories.ShiftRepository;
@@ -39,22 +39,22 @@ public class ShiftController {
         return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    @ResponseBody
-    public Shift updateShift(@PathVariable Long id, @RequestBody Shift updates) {
-        Shift shift = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
+//    @PutMapping("/{id}")
+//    @ResponseBody
+//    public Shift updateShift(@PathVariable Long id, @RequestBody Shift updates) {
+//        Shift shift = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//
 //        if (updates.getName() != null) Shift.setName(updates.getName());
 //        if (updates.getRole()!= null) Shift.setRole(updates.getRole());
 //        if (updates.getDepartment() != null) Shift.setDepartment(updates.getDepartment());
 //        if (updates.getLocation()!= null) Shift.setLocation(updates.getLocation());
 //        if (updates.getSupervisor()!= null) Shift.setSupervisor(updates.getSupervisor());
-////        if (updates.getSkills() != null) Shift.setSkills(updates.getSkills());
+//        if (updates.getSkills() != null) Shift.setSkills(updates.getSkills());
 //        if (updates.getSalary()!= null) Shift.setSalary(updates.getSalary());
 //        if (updates.getDateHired()!= null) Shift.setDateHired(updates.getDateHired());
-
-        return repository.save(shift);
-    }
+//
+//        return repository.save(shift);
+//    }
 
 
       // TODO: Assign Employee Shifts
