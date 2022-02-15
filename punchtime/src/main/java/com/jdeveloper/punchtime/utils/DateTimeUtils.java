@@ -1,24 +1,28 @@
-package com.jdeveloper.punchtime;
+package com.jdeveloper.punchtime.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class JavaScrap {
+public class DateTimeUtils {
 
 	public static void main(String[] args) throws ParseException {
 
 	//splitDateTime();
-		inputDate();
-		inputTime();
+//		inputDate();
+//		System.out.println(inputTime("20:31:00","10:31:00"));
+		
+		
+
+
 		
 	}
-	
+	// UNIX Epoch Time
 	public static void splitDateTime() {
 		try (Scanner scan = new Scanner(System.in)) {
 			System.out.println("Enter Date: ex. 2017-07-05");
@@ -61,20 +65,30 @@ public class JavaScrap {
 //		System.out.println(ld);
 	}
 	
-	public static void inputTime() throws ParseException {
-		
-		String time1 = "16:00:00";
-		String time2 = "19:00:00";
+	public static Double inputTime(String time1, String time2) throws ParseException {
+//		String time1 = "20:31:00";
+//		String time2 = "10:31:00";
+		//String time1 = "07:01:03";
+		//String time2 = "15:01:03";
 
 		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 		Date date1 = format.parse(time1);
 		Date date2 = format.parse(time2);
-		long difference = date2.getTime() - date1.getTime();
-		long hours=difference/3600000;
-		System.out.println(hours);
-		
+		Double difference = (double) (date2.getTime() - date1.getTime());
+		Double hours=Math.floor(((difference/3600000)*100)/100);
+	//	System.out.println(Math.floor(hours * 100) / 100);
+		return hours;
 	}
 	
-	
+	public static void displayCurrentUnixEpochTime() {
+        long ut1 = Instant.now().getEpochSecond();
+        System.out.println(ut1);
 
+        long ut2 = System.currentTimeMillis() / 1000L;
+        System.out.println(ut2);
+
+        Date now = new Date();
+        long ut3 = now.getTime() / 1000L;
+        System.out.println(ut3);
+	}
 }

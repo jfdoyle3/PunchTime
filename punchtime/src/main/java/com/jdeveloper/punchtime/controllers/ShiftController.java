@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.jdeveloper.punchtime.entities.Shift;
-import com.jdeveloper.punchtime.repositories.EmployeeRepository;
 import com.jdeveloper.punchtime.repositories.ShiftRepository;
 
 @RestController
@@ -26,7 +25,8 @@ public class ShiftController {
 
     @Autowired
     private ShiftRepository repository;
-    private EmployeeRepository empRepo;
+    
+
 
     @GetMapping
     @ResponseBody

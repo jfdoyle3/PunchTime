@@ -1,5 +1,7 @@
 package com.jdeveloper.punchtime.entities;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,19 +9,17 @@ public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String date;
+    private Date date;
     private String punchIn;
     private String punchOut;
     private Long hours;
 
     public Shift() {}
 
-	public Shift(String date, String punchIn, String punchOut, Long hours) {
-		super();
+	public Shift(Date date, String punchIn, String punchOut) {
 		this.date = date;
 		this.punchIn = punchIn;
 		this.punchOut = punchOut;
-		this.hours = hours;
 	}
 
 	public Long getId() {
@@ -30,11 +30,11 @@ public class Shift {
 		this.id = id;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
