@@ -4,7 +4,6 @@ package com.jdeveloper.punchtime.controllers;
 import com.jdeveloper.punchtime.entities.Employee;
 import com.jdeveloper.punchtime.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
