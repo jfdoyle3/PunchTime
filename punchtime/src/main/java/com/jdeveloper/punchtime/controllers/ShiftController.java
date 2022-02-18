@@ -1,5 +1,6 @@
 package com.jdeveloper.punchtime.controllers;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdeveloper.punchtime.entities.Shift;
 import com.jdeveloper.punchtime.repositories.ShiftRepository;
+import com.jdeveloper.punchtime.utils.DateTimeUtils;
 
 @RestController
 @RequestMapping("/api/shifts")
@@ -35,7 +37,9 @@ public class ShiftController {
     }
 
     @PostMapping
-    public ResponseEntity<Shift> addShift(@RequestBody Shift newShift) {
+    public ResponseEntity<Shift> addShift(@RequestBody Shift newShift) throws ParseException {
+		Double hours=DateTimeUtils.calculateDailyHours(newShift.getPunchIn(),newShift.getPunchOut());
+    	newShift.setHours(hours);
         return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
     }
 
