@@ -1,12 +1,14 @@
 package com.jdeveloper.punchtime.entities;
 
+import java.util.UUID;
+
 import javax.persistence.*;
 
 @Entity
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 	private String name;
 //    private String role;
