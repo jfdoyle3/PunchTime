@@ -1,6 +1,5 @@
 package com.jdeveloper.punchtime.entities;
 
-import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -11,16 +10,11 @@ public class Employee {
 	@GeneratedValue
 	private Long id;
 	private String name;
-//    private String role;
-//    private String department;
-//    private String location;
-//    private String supervisor;
-//    private Double salary;
-//    private Date dateHired;
 
-//    @OneToOne
-//    @JoinColumn(name = "developer_id", referencedColumnName = "id")
-//    private Shift shift;
+
+    @OneToOne
+    @JoinColumn(name = "shift_id", referencedColumnName = "id")
+    private Shift shift;
 
 	public Employee() {
 	}
@@ -47,52 +41,4 @@ public class Employee {
 		this.name = name;
 	}
 
-//    public String getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(String role) {
-//        this.role = role;
-//    }
-//
-//    public String getDepartment() {
-//        return department;
-//    }
-//
-//    public void setDepartment(String department) {
-//        this.department = department;
-//    }
-//
-//    public String getLocation() {
-//        return location;
-//    }
-//
-//    public void setLocation(String location) {
-//        this.location = location;
-//    }
-//
-//    public String getSupervisor() {
-//        return supervisor;
-//    }
-//
-//    public void setSupervisor(String supervisor) {
-//        this.supervisor = supervisor;
-//    }
-//
-//
-//    public Double getSalary() {
-//        return salary;
-//    }
-//
-//    public void setSalary(Double salary) {
-//        this.salary = salary;
-//    }
-//
-//    public Date getDateHired() {
-//        return dateHired;
-//    }
-//
-//    public void setDateHired (Date dateHired) {
-//        this.dateHired = dateHired;
-//    }
 }

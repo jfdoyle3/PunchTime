@@ -1,10 +1,7 @@
 package com.jdeveloper.punchtime.entities;
 
-import java.text.ParseException;
-
 import javax.persistence.*;
 
-import com.jdeveloper.punchtime.utils.DateTimeUtils;
 
 @Entity
 public class Shift {
@@ -14,7 +11,6 @@ public class Shift {
     private String date;
     private String punchIn;
     private String punchOut;
-	@SuppressWarnings("unused")
 	private Double hours;
 	
     public Shift() {}
