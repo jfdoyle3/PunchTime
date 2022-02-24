@@ -1,24 +1,25 @@
 package com.jdeveloper.punchtime.entities;
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Shift {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String date;
-    private String punchIn;
-    private String punchOut;
-	private Double hours;
 	
-    public Shift() {}
-
-	public Shift(String date, String punchIn, String punchOut) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private String date;
+	private String hours;
+	
+	public Shift() {}
+	
+	public Shift(String date, String hours) {
+		super();
 		this.date = date;
-		this.punchIn = punchIn;
-		this.punchOut = punchOut;
+		this.hours = hours;
 	}
 
 	public Long getId() {
@@ -37,28 +38,13 @@ public class Shift {
 		this.date = date;
 	}
 
-	public String getPunchIn() {
-		return punchIn;
-	}
-
-	public void setPunchIn(String punchIn) {
-		this.punchIn = punchIn;
-	}
-
-	public String getPunchOut() {
-		return punchOut;
-	}
-
-	public void setPunchOut(String punchOut) {
-		this.punchOut = punchOut;
-	}
-
-	public Double getHours() {
+	public String getHours() {
 		return hours;
 	}
 
-	public void setHours(Double hours) {
-
-		this.hours=hours;
+	public void setHours(String hours) {
+		this.hours = hours;
 	}
+	
+
 }

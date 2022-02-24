@@ -3,11 +3,16 @@ package com.jdeveloper.punchtime.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
@@ -16,17 +21,70 @@ public class DateTimeUtils {
 
 	
 	// TODO delete this when finished.
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, ClassNotFoundException, SQLException {
 
 	//splitDateTime();
 //		inputDate();
 //		System.out.println(inputTime("20:31:00","10:31:00"));
 		
 	//	sqlDateTime();
-		
-		java.util.Date date=new java.util.Date();
-		System.out.println(date.getTime());
+		mySQLTimeStampInput();
+//		  java.util.Date utilDate = new java.util.Date();
+//	        System.out.println("java.util.Date time    : " + utilDate);
+//	        java.sql.Timestamp sqlTS = new java.sql.Timestamp(utilDate.getTime());
+//	        System.out.println("java.sql.Timestamp time: " + sqlTS);
+//	        
+//	        DateFormat df = new SimpleDateFormat("dd/MM/YYYY hh:mm:ss:SSS");
+//	        System.out.println("Date formatted         : " + df.format(utilDate));
 	
+	}
+	public static void mySQLTimeStampInput() {
+		try (Scanner scan = new Scanner(System.in)) {
+			System.out.println("Enter Date: ex. 2017-07-05");
+			String date = scan.next();
+			System.out.println("Enter Time: ex. 20:31");
+			String time = scan.next();
+			String sourceTime = date + "T" + time + "+0:0000";
+			
+			
+			
+			
+			  java.util.Date utilDate = new java.util.Date();
+		        System.out.println("java.util.Date time    : " + utilDate);
+		        java.sql.Timestamp sqlTS = new java.sql.Timestamp(utilDate.getTime());
+		        System.out.println("java.sql.Timestamp time: " + sqlTS);
+		        
+		        DateFormat df = new SimpleDateFormat("dd/MM/YYYY hh:mm:ss:SSS");
+		        System.out.println("Date formatted         : " + df.format(utilDate));
+			
+		}
+	}
+	
+	public static void calendarToSQL() throws ClassNotFoundException, SQLException {
+		
+		
+		
+			  // (1) connect to the database (mysql)
+		
+		    String myUrl = "jdbc:mysql://localhost/datetime";
+		   
+		    Connection connection = DriverManager.getConnection(myUrl, "root", "root");
+
+		    // (2) create a java timestamp object that represents the current time (i.e., a "current timestamp")
+		    Calendar calendar = Calendar.getInstance();
+		    calendar.set(2022,01,05);
+		    java.sql.Timestamp ourJavaTimestampObject = new java.sql.Timestamp(calendar.getTime().getTime());
+		    
+		    // (3) create a java timestamp insert statement
+		    String sqlTimestampInsertStatement = "INSERT INTO record (timestamp2) VALUES (?)";
+		    PreparedStatement preparedStatement = connection.prepareStatement(sqlTimestampInsertStatement);
+		    preparedStatement.setTimestamp(1, ourJavaTimestampObject);
+
+		    // (4) execute the sql timestamp insert statement, then shut everything down
+		    preparedStatement.executeUpdate();
+		    preparedStatement.close();
+		    System.exit(0);
+		
 	}
 	
 	public static void sqlDateTime() {

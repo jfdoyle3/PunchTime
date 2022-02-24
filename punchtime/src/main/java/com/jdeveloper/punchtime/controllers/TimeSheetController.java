@@ -17,27 +17,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.jdeveloper.punchtime.entities.Shift;
-import com.jdeveloper.punchtime.repositories.ShiftRepository;
+import com.jdeveloper.punchtime.entities.TimeSheet;
+import com.jdeveloper.punchtime.repositories.TimeSheetRepository;
 import com.jdeveloper.punchtime.utils.DateTimeUtils;
 
 @RestController
 @RequestMapping("/api/shifts")
-public class ShiftController {
+public class TimeSheetController {
 
     @Autowired
-    private ShiftRepository repository;
+    private TimeSheetRepository repository;
     
 
 
     @GetMapping
     @ResponseBody
-    public List<Shift> getShifts() {
+    public List<TimeSheet> getShifts() {
         return repository.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<Shift> addShift(@RequestBody Shift newShift) throws ParseException {
+    public ResponseEntity<TimeSheet> addShift(@RequestBody TimeSheet newShift) throws ParseException {
 		Double hours=DateTimeUtils.calculateDailyHours(newShift.getPunchIn(),newShift.getPunchOut());
     	newShift.setHours(hours);
         return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);

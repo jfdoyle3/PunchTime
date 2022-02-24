@@ -14,7 +14,7 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "shift_id", referencedColumnName = "id")
-    private Shift shift;
+    private TimeSheet shift;
 
 	public Employee() {
 	}
