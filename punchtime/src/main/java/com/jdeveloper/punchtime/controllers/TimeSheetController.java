@@ -36,12 +36,12 @@ public class TimeSheetController {
         return repository.findAll();
     }
 
-    @PostMapping
-    public ResponseEntity<TimeSheet> addShift(@RequestBody TimeSheet newShift) throws ParseException {
-		Double hours=DateTimeUtils.calculateDailyHours(newShift.getPunchIn(),newShift.getPunchOut());
-    	newShift.setHours(hours);
-        return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
-    }
+//    @PostMapping
+//    public ResponseEntity<TimeSheet> addShift(@RequestBody TimeSheet newShift) throws ParseException {
+//	//	Double hours=DateTimeUtils.calculateDailyHours(newShift.getPunchIn(),newShift.getPunchOut());
+//    	newShift.setHours(hours);
+//        return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
+//    }
 
 //    @PutMapping("/{id}")
 //    @ResponseBody
