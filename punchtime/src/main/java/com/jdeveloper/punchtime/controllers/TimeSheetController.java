@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdeveloper.punchtime.entities.TimeSheet;
 import com.jdeveloper.punchtime.repositories.TimeSheetRepository;
-import com.jdeveloper.punchtime.utils.DateTimeUtils;
 
 @RestController
 @RequestMapping("/api/shifts")
@@ -36,12 +35,11 @@ public class TimeSheetController {
         return repository.findAll();
     }
 
-//    @PostMapping
-//    public ResponseEntity<TimeSheet> addShift(@RequestBody TimeSheet newShift) throws ParseException {
-//	//	Double hours=DateTimeUtils.calculateDailyHours(newShift.getPunchIn(),newShift.getPunchOut());
-//    	newShift.setHours(hours);
-//        return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
-//    }
+    @PostMapping
+    public ResponseEntity<TimeSheet> addShift(@RequestBody TimeSheet newShift) {
+    	
+        return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
+    }
 
 //    @PutMapping("/{id}")
 //    @ResponseBody
