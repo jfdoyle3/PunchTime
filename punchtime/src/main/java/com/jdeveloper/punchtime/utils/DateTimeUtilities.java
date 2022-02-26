@@ -254,7 +254,7 @@ public class DateTimeUtilities {
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		String timeIn = "2011-01-18 07:00:00";
-		String timeOut = "2011-01-19 15:00:00";
+		String timeOut = "2011-01-19 15:15:00";
 		Date dateIn = dateFormat.parse(timeIn);
 		Date dateOut = dateFormat.parse(timeOut);
 
@@ -285,8 +285,8 @@ public class DateTimeUtilities {
 
 		// Calculate hours
 
-		final int MILLI_TO_HOUR = 1000 * 60 * 60;
-		Double hours = (double) ((unixEpochOut.getTime() - unixEpochIn.getTime()) / MILLI_TO_HOUR);
+		final double MILLI_TO_HOUR = 1000 * 60 * 60;
+		Double hours =  ((unixEpochOut.getTime() - unixEpochIn.getTime()) / MILLI_TO_HOUR);
 		System.out.println("\n\nHours: " + hours);
 
 	}
