@@ -16,30 +16,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.jdeveloper.punchtime.entities.TimeSheet;
 import com.jdeveloper.punchtime.repositories.TimeSheetRepository;
+import com.jdeveloper.punchtime.utils.DateTimeUtils;
 
 @RestController
 @RequestMapping("/api/shifts")
 public class TimeSheetController {
 
-    @Autowired
-    private TimeSheetRepository repository;
-    
+	@Autowired
+	private TimeSheetRepository repository;
 
+	@GetMapping
+	@ResponseBody
+	public List<TimeSheet> getShifts() {
+		return repository.findAll();
+	}
 
-    @GetMapping
-    @ResponseBody
-    public List<TimeSheet> getShifts() {
-        return repository.findAll();
-    }
-
-    @PostMapping
-    public ResponseEntity<TimeSheet> addShift(@RequestBody TimeSheet newShift) {
-    	
-        return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
-    }
+	@PostMapping
+	public ResponseEntity<TimeSheet> addShift(@RequestBody TimeSheet newShift) throws ParseException {
+		newShift.setHours(DateTimeUtils.calculateHours(newShift.getPunchIn(), newShift.getPunchOut()));
+		return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
+	}
 
 //    @PutMapping("/{id}")
 //    @ResponseBody
@@ -58,20 +56,18 @@ public class TimeSheetController {
 //        return repository.save(shift);
 //    }
 
-
-      // TODO: Assign Employee Shifts
-      // TODO: REFACTOR/FIX THIS TO WORK
+	// TODO: Assign Employee Shifts
+	// TODO: REFACTOR/FIX THIS TO WORK
 //    @PostMapping("/{empId}")
 //    public @ResponseBody Post newPost(@PathVariable Long empId, @RequestBody Post newPost) {
 //        Shift poster = repository.findById(empId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Developer Not Found"));
 //        newPost.setEmpoyee(poster);
 //        return repository.save(newPost);
- //   }
+	// }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> removeShift(@PathVariable Long id) {
-        repository.deleteById(id);
-        return new ResponseEntity<>("Shift ID " + id + " removed", HttpStatus.OK);
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> removeShift(@PathVariable Long id) {
+		repository.deleteById(id);
+		return new ResponseEntity<>("Shift ID " + id + " removed", HttpStatus.OK);
+	}
 }

@@ -13,7 +13,7 @@ public class Employee {
 
 
     @OneToOne
-    @JoinColumn(name = "shift_id", referencedColumnName = "id")
+    @JoinColumn(name = "timeshe_id", referencedColumnName = "id")
     private TimeSheet shift;
 
 	public Employee() {
@@ -40,5 +40,7 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 
 }

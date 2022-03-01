@@ -1,5 +1,8 @@
 package com.jdeveloper.punchtime.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 
@@ -8,13 +11,22 @@ public class TimeSheet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String punchIn;
-    private String punchOut;
+    private Long punchIn;
+    private Long punchOut;
 	private Double hours;
+	
+	@ManyToMany
+    @JoinTable(
+            name = "employee_timesheet",
+            joinColumns = @JoinColumn(name = "emplyee_id"),
+            inverseJoinColumns = @JoinColumn(name = "timesheet_id")
+    )
+	private Set<Employee> employee=new HashSet<>();
+	
 	
     public TimeSheet() {}
 
-	public TimeSheet(String date, String punchIn, String punchOut) {
+	public TimeSheet(String date, Long punchIn, Long punchOut) {
 		this.punchIn = punchIn;
 		this.punchOut = punchOut;
 	}
@@ -27,20 +39,19 @@ public class TimeSheet {
 		this.id = id;
 	}
 
-
-	public String getPunchIn() {
+	public Long getPunchIn() {
 		return punchIn;
 	}
 
-	public void setPunchIn(String punchIn) {
+	public void setPunchIn(Long punchIn) {
 		this.punchIn = punchIn;
 	}
 
-	public String getPunchOut() {
+	public Long getPunchOut() {
 		return punchOut;
 	}
 
-	public void setPunchOut(String punchOut) {
+	public void setPunchOut(Long punchOut) {
 		this.punchOut = punchOut;
 	}
 
@@ -52,4 +63,13 @@ public class TimeSheet {
 
 		this.hours=hours;
 	}
+
+	public Set<Employee> getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Set<Employee> employee) {
+		this.employee = employee;
+	}
+	
 }
