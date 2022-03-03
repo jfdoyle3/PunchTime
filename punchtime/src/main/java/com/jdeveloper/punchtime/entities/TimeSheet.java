@@ -15,12 +15,7 @@ public class TimeSheet {
     private Long punchOut;
 	private Double hours;
 	
-	@ManyToMany
-    @JoinTable(
-            name = "employee_timesheet",
-            joinColumns = @JoinColumn(name = "emplyee_id"),
-            inverseJoinColumns = @JoinColumn(name = "timesheet_id")
-    )
+	@ManyToMany(fetch=FetchType.LAZY)
 	private Set<Employee> employee=new HashSet<>();
 	
 	
@@ -60,7 +55,6 @@ public class TimeSheet {
 	}
 
 	public void setHours(Double hours) {
-
 		this.hours=hours;
 	}
 

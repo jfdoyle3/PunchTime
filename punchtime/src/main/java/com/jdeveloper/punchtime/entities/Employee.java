@@ -1,7 +1,13 @@
 package com.jdeveloper.punchtime.entities;
 
 
-import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Employee {
@@ -12,9 +18,8 @@ public class Employee {
 	private String name;
 
 
-    @OneToOne
-    @JoinColumn(name = "timeshe_id", referencedColumnName = "id")
-    private TimeSheet shift;
+    @ManyToMany(fetch=FetchType.LAZY)
+    private Set<TimeSheet> shift;
 
 	public Employee() {
 	}
