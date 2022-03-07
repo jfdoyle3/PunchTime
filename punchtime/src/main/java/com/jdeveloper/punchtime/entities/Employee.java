@@ -1,13 +1,14 @@
 package com.jdeveloper.punchtime.entities;
 
 
-import java.util.Set;
+
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
+import javax.persistence.OneToMany;
 
 @Entity
 public class Employee {
@@ -18,8 +19,8 @@ public class Employee {
 	private String name;
 
 
-    @ManyToMany(fetch=FetchType.LAZY)
-    private Set<TimeSheet> shift;
+    @OneToMany(fetch=FetchType.LAZY)
+    private TimeSheet shift;
 
 	public Employee() {
 	}
@@ -44,6 +45,14 @@ public class Employee {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public TimeSheet getShift() {
+		return shift;
+	}
+
+	public void setShift(TimeSheet shift) {
+		this.shift = shift;
 	}
 	
 	
