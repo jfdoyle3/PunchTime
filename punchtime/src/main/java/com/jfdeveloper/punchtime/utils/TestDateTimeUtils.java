@@ -1,4 +1,4 @@
-package com.jdeveloper.punchtime.utils;
+package com.jfdeveloper.punchtime.utils;
 
 import java.text.ParseException;
 

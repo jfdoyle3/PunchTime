@@ -1,7 +1,8 @@
-package com.jdeveloper.punchtime.utils;
+package com.jfdeveloper.punchtime.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateTimeUtils {
@@ -32,6 +33,30 @@ public class DateTimeUtils {
 		Double hours = (date2.getTime() - date1.getTime()) / MILLISECOND_TO_HOUR;
 
 		return hours;
+	}
+	
+	// Maybe a Method for Week Number in Calendar Year.
+	
+	public int getDayOfWeekFromDate(Date date) {
+		
+		Calendar cal=Calendar.getInstance();
+		cal.setTime(date);
+		int day=cal.get(Calendar.DAY_OF_WEEK);
+		
+		/* May want this to return a String instead of an int/byte
+		 * switch(day){
+			case 1-> System.out.println("Sunday");
+			case 2-> System.out.println("Monday");
+			case 3-> System.out.println("Tuesday");
+			case 4-> System.out.println("Wednesday");
+			case 5-> System.out.println("Thursday");
+			case 6-> System.out.println("Friday");
+			case 7-> System.out.println("Saturday");
+			default->System.out.println("error - day doesn't exist");
+			}
+		 */
+		
+		return day;
 	}
 
 }

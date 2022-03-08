@@ -1,8 +1,8 @@
-package com.jdeveloper.punchtime.controllers;
+package com.jfdeveloper.punchtime.controllers;
 
 
-import com.jdeveloper.punchtime.entities.Employee;
-import com.jdeveloper.punchtime.repositories.EmployeeRepository;
+import com.jfdeveloper.punchtime.entities.Employee;
+import com.jfdeveloper.punchtime.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
+	
     @Autowired
     private EmployeeRepository repository;
 
@@ -28,25 +29,6 @@ public class EmployeeController {
         return new ResponseEntity<>(repository.findAllByName(name), HttpStatus.OK);
     }
 
-//    @GetMapping("/role/{role}")
-//    public ResponseEntity<List<Employee>> getEmployeesByRole(@PathVariable String role) {
-//        return new ResponseEntity<>(repository.findAllByRole(role, Sort.by("name")), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/department/{department}")
-//    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable String department) {
-//        return new ResponseEntity<>(repository.findAllByDepartment(department, Sort.by("name")), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/location/{location}")
-//    public ResponseEntity<List<Employee>> getEmployeesByLocation(@PathVariable String location) {
-//        return new ResponseEntity<>(repository.findAllByDepartment(location, Sort.by("name")), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/supervisor/{supervisor}")
-//    public ResponseEntity<List<Employee>> getEmployeesBySupervisor(@PathVariable String supervisor) {
-//        return new ResponseEntity<>(repository.findAllBySupervisor(supervisor, Sort.by("name")), HttpStatus.OK);
-//    }
 
     @GetMapping("/{id}")
     @ResponseBody
@@ -67,12 +49,6 @@ public class EmployeeController {
         Employee Employee = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (updates.getName() != null) Employee.setName(updates.getName());
-//        if (updates.getRole() != null) Employee.setRole(updates.getRole());
-//        if (updates.getDepartment() != null) Employee.setDepartment(updates.getDepartment());
-//        if (updates.getLocation() != null) Employee.setLocation(updates.getLocation());
-//        if (updates.getSupervisor()!= null) Employee.setSupervisor(updates.getSupervisor());
-//        if (updates.getSalary() != null) Employee.setSalary(updates.getSalary());
-//        if (updates.getDateHired()!= null) Employee.setDateHired(updates.getDateHired());
 
         return repository.save(Employee);
     }

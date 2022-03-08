@@ -1,6 +1,6 @@
-package com.jdeveloper.punchtime.repositories;
+package com.jfdeveloper.punchtime.repositories;
 
-import com.jdeveloper.punchtime.entities.Employee;
+import com.jfdeveloper.punchtime.entities.Employee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

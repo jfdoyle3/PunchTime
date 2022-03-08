@@ -1,34 +1,25 @@
-package com.jdeveloper.punchtime.entities;
-
-
-
+package com.jfdeveloper.punchtime.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
-import javax.persistence.OneToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Employee {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 
-
-    @OneToMany(fetch=FetchType.LAZY)
-    private TimeSheet shift;
 
 	public Employee() {
 	}
 
 	public Employee(String name) {
-		super();
 		this.name = name;
-
 	}
 
 	public Long getId() {
@@ -46,15 +37,4 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public TimeSheet getShift() {
-		return shift;
-	}
-
-	public void setShift(TimeSheet shift) {
-		this.shift = shift;
-	}
-	
-	
-
 }

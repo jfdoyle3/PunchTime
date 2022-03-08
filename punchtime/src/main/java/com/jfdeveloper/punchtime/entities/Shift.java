@@ -1,27 +1,23 @@
-package com.jdeveloper.punchtime.entities;
-
-import java.util.HashSet;
-import java.util.Set;
+package com.jfdeveloper.punchtime.entities;
 
 import javax.persistence.*;
 
-
 @Entity
-public class TimeSheet {
+public class Shift {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long punchIn;
     private Long punchOut;
 	private Double hours;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	private Set<Employee> employee=new HashSet<>();
+	@OneToOne
+	private Employee employee;
 	
 	
-    public TimeSheet() {}
+    public Shift() {}
 
-	public TimeSheet(String date, Long punchIn, Long punchOut) {
+	public Shift(Long punchIn, Long punchOut) {
 		this.punchIn = punchIn;
 		this.punchOut = punchOut;
 	}
@@ -58,12 +54,14 @@ public class TimeSheet {
 		this.hours=hours;
 	}
 
-	public Set<Employee> getEmployee() {
+	public Employee getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(Set<Employee> employee) {
+	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
+
 	
 }

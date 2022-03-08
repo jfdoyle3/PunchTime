@@ -1,4 +1,4 @@
-package com.jdeveloper.punchtime;
+package com.jfdeveloper.punchtime;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class PunchtimeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PunchtimeApplication.class, args);
 	}
-
 }
