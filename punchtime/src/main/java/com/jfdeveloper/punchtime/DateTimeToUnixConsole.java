@@ -16,6 +16,7 @@ public class DateTimeToUnixConsole {
 			SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 			Date dateIn = dateTimeFormat.parse(dateTime);
+			System.out.println(dateIn);
 			long unixTime = dateIn.getTime() / 1000L;
 
 			System.out.println("\nUnixTime: "+unixTime);

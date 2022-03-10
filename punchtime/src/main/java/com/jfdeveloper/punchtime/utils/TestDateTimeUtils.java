@@ -6,8 +6,8 @@ public class TestDateTimeUtils {
 
 	public static void main(String[] args) throws ParseException {
 				// Input
-				String time1 = "2011-01-18 07:00:00";
-				String time2 = "2011-01-18 15:15:02";
+				String time1 = "2010-01-18 07:00:00";
+				String time2 = "2011-01-18 15:15:00";
 				
 				System.out.println("Input:");
 				System.out.println(time1);
