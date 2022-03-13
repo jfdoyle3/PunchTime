@@ -34,7 +34,7 @@ public class TimeSheetController {
 	
 	@PostMapping
 	public ResponseEntity<TimeSheet> addTimeSheet(@RequestBody TimeSheet newTimeSheet) throws ParseException {
-		newTimeSheet.setTotalHours(DateTimeUtils.calculateHours(newTimeSheet.getWeekStart(),newTimeSheet.getWeekEnd()));
+		newTimeSheet.setTotalHours(DateTimeUtils.calculateHours(newTimeSheet.getStartDate(),newTimeSheet.getEndDate()));
 		return new ResponseEntity<>(repository.save(newTimeSheet), HttpStatus.CREATED);
 	}
 
@@ -43,5 +43,4 @@ public class TimeSheetController {
 		repository.deleteById(id);
 		return new ResponseEntity<>("Shift ID " + id + " removed", HttpStatus.OK);
 	}
-	
 }
