@@ -8,7 +8,10 @@ import java.util.Scanner;
 public class DateTimeToUnixConsole {
 
 	public static void main(String[] args) throws ParseException {
-		
+		/*
+		 * start:	1647255600
+		 * end:		1647630000
+		 */
 		try (Scanner input = new Scanner(System.in)) {
 			System.out.println("Enter date and Time: YYYY-MM-DD HH:MM:SS");
 			String dateTime=input.nextLine();
@@ -22,5 +25,6 @@ public class DateTimeToUnixConsole {
 			System.out.println("\nUnixTime: "+unixTime);
 		}
 	}
-
 }
+
+
