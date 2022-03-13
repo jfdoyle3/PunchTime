@@ -29,5 +29,5 @@ public class CompanyController {
     @PostMapping
     public ResponseEntity<Company> addCompany(@RequestBody Company newCompany) {
         return new ResponseEntity<>(repository.save(newCompany), HttpStatus.CREATED);
-    } 
+    }
 }
