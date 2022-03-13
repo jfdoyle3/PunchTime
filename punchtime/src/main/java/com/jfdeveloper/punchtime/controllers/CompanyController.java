@@ -27,9 +27,7 @@ public class CompanyController {
 	public List<Company> getCompany() { return repository.findAll(); } 
 	
     @PostMapping
-    public ResponseEntity<Company> addEmployee(@RequestBody Company newCompany) {
+    public ResponseEntity<Company> addCompany(@RequestBody Company newCompany) {
         return new ResponseEntity<>(repository.save(newCompany), HttpStatus.CREATED);
-    }
-	 
-	 
+    } 
 }
