@@ -21,8 +21,7 @@ public class TimeSheet {
 	
 	public TimeSheet() {}	
 		
-	public TimeSheet(String employee, String company, String jobTitle, Long startDate, Long endDate,
-			Double totalHours) {
+	public TimeSheet(String employee, String company, String jobTitle, Long startDate, Long endDate) {
 		this.employee = employee;
 		this.company = company;
 		this.jobTitle = jobTitle;
@@ -76,58 +75,6 @@ public class TimeSheet {
 
 	public void setEndDate(Long endDate) {
 		this.endDate = endDate;
-	}
-
-	public Double getTotalHours() {
-		return totalHours;
-	}
-
-	public void setTotalHours(Double totalHours) {
-		this.totalHours = totalHours;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(String employee) {
-		this.employee = employee;
-	}
-
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Long getWeekStart() {
-		return weekStart;
-	}
-
-	public void setWeekStart(Long weekStart) {
-		this.weekStart = weekStart;
-	}
-
-	public Long getWeekEnd() {
-		return weekEnd;
-	}
-
-	public void setWeekEnd(Long weekEnd) {
-		this.weekEnd = weekEnd;
 	}
 
 	public Double getTotalHours() {
