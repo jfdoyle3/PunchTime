@@ -14,6 +14,9 @@ public class Shift {
 	@OneToOne
 	private Employee employee;
 	
+	@OneToOne
+	private Company company;
+	
 	
     public Shift() {}
 
