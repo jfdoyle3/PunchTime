@@ -24,12 +24,6 @@ public class EmployeeController {
         return repository.findAll();
     }
 
-    @GetMapping("/name/{name}")
-    public ResponseEntity<List<Employee>> getEmployeeByName(@PathVariable String name) {
-        return new ResponseEntity<>(repository.findAllByName(name), HttpStatus.OK);
-    }
-
-
     @GetMapping("/{id}")
     @ResponseBody
     public Employee getEmployeeById(@PathVariable Long id) {
