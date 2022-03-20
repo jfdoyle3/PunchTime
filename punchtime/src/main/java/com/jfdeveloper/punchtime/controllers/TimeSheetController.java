@@ -34,7 +34,6 @@ public class TimeSheetController {
 	
 	@PostMapping
 	public ResponseEntity<TimeSheet> addTimeSheet(@RequestBody TimeSheet newTimeSheet) throws ParseException {
-		newTimeSheet.setTotalHours(DateTimeUtils.calculateHours(newTimeSheet.getStartDate(),newTimeSheet.getEndDate()));
 		return new ResponseEntity<>(repository.save(newTimeSheet), HttpStatus.CREATED);
 	}
 

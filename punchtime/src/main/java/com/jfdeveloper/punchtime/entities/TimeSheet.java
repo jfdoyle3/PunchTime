@@ -13,19 +13,14 @@ public class TimeSheet {
 	private Long id;
 	private String employee;
 	private String company;
-	private String jobTitle;
-	private Long startDate;
-	private Long endDate;
-	private Double totalHours;
+	private Long punchTime;
 	
-	public TimeSheet() {}	
-		
-	public TimeSheet(String employee, String company, String jobTitle, Long startDate, Long endDate) {
+	public TimeSheet() {}
+
+	public TimeSheet(String employee, String company, Long punchTime) {
 		this.employee = employee;
 		this.company = company;
-		this.jobTitle = jobTitle;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.punchTime = punchTime;
 	}
 
 	public Long getId() {
@@ -52,35 +47,12 @@ public class TimeSheet {
 		this.company = company;
 	}
 
-	public String getJobTitle() {
-		return jobTitle;
+	public Long getPunchTime() {
+		return punchTime;
 	}
 
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
-	}
-
-	public Long getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Long startDate) {
-		this.startDate = startDate;
-	}
-
-	public Long getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Long endDate) {
-		this.endDate = endDate;
-	}
-
-	public Double getTotalHours() {
-		return totalHours;
-	}
-
-	public void setTotalHours(Double totalHours) {
-		this.totalHours = totalHours;
-	}
+	public void setPunchTime(Long punchTime) {
+		this.punchTime = punchTime;
+	}	
+	
 }
