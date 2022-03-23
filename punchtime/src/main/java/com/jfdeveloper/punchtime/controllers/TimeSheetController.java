@@ -36,9 +36,4 @@ public class TimeSheetController {
 		return new ResponseEntity<>(repository.save(newTimeSheet), HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<String> removeShift(@PathVariable Long id) {
-		repository.deleteById(id);
-		return new ResponseEntity<>("Shift ID " + id + " removed", HttpStatus.OK);
-	}
 }

@@ -39,9 +39,4 @@ public class ShiftController {
 		return new ResponseEntity<>(repository.save(newShift), HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<String> removeShift(@PathVariable Long id) {
-		repository.deleteById(id);
-		return new ResponseEntity<>("Shift ID " + id + " removed", HttpStatus.OK);
-	}
 }
