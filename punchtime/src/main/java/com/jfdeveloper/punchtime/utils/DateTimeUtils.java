@@ -9,6 +9,8 @@ public class DateTimeUtils {
 
 	private static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private static final double MILLISECOND_TO_HOUR = 1000 * 60 * 60;
+	private static final double MILLISECOND_TO_DAY=1000*60*60*24;
+	private static final double MILLISECOND_TO_MINUTE=1000*60;
 
 	public static Long dateToEpochTime(String dateTime) throws ParseException {
 
@@ -25,6 +27,15 @@ public class DateTimeUtils {
 
 		return dateTimeFormatted;
 	}
+	
+	public static double calculateDays(long unixEpoch1, long unixEpoch2) throws ParseException {
+
+		Date date1 = new Date(unixEpoch1 * 1000L);
+		Date date2 = new Date(unixEpoch2 * 1000L);
+		Double days = (date2.getTime() - date1.getTime()) / MILLISECOND_TO_DAY;
+
+		return days;
+	}
 
 	public static double calculateHours(long unixEpoch1, long unixEpoch2) throws ParseException {
 
@@ -33,6 +44,15 @@ public class DateTimeUtils {
 		Double hours = (date2.getTime() - date1.getTime()) / MILLISECOND_TO_HOUR;
 
 		return hours;
+	}
+	
+	public static double calculateMinutes(long unixEpoch1, long unixEpoch2) throws ParseException {
+
+		Date date1 = new Date(unixEpoch1 * 1000L);
+		Date date2 = new Date(unixEpoch2 * 1000L);
+		Double minutes = (date2.getTime() - date1.getTime()) / MILLISECOND_TO_MINUTE;
+
+		return minutes;
 	}
 	
 	// Maybe a Method for Week Number in Calendar Year.
